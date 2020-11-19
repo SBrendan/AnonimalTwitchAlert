@@ -9,6 +9,12 @@ function pushNotification(id, title, message, iconUrl) {
 		message: message,
 		iconUrl: iconUrl
 	});
+
+	chrome.notifications.onClicked.addListener(function (notifId) {
+		chrome.tabs.create({
+			url: "https://www.twitch.tv/" + config.name
+		});
+	})
 }
 
 function checkOauthToken() {
