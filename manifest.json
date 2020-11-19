@@ -1,0 +1,54 @@
+{
+	"manifest_version": 2,
+	"author": "Brendan Seiller",
+	"name": "Anonimal Strem Alert",
+	"description": "Extension pour être alerté des diffusions d'Anonimal",
+	"version": "1.0.0",
+	"browser_action": {
+		"default_popup": "index.html"
+	},
+	"icons": {
+		"128": "img/icon_128.png",
+		"300": "img/icon_300.png"
+	},
+	"background": {
+		"scripts": [
+			"js/jquery.js",
+			"js/config.js",
+			"js/background.js"
+		],
+		"persistent": true
+	},
+	"permissions": [
+		"notifications",
+		"storage",
+		"cookies",
+		"https://api.twitch.tv/*"
+	],
+	"applications": {
+		"gecko": {
+			"id": "anonimal@twitch.alert"
+		}
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://api.twitch.tv/*"
+			],
+			"js": [
+				"js/app.js",
+				"js/background.js",
+				"js/config.js",
+				"js/jquery.js"
+			],
+			"css": [
+				"css/fontawesome.css",
+				"css/style.css"
+			],
+			"scss": [
+				"css/scss/style.scss"
+			],
+			"run_at": "document_start"
+		}
+	]
+}
